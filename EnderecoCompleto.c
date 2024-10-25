@@ -46,7 +46,7 @@ int main(void){
 	 
     
 	for(i=0;i<n;i++){
-		setlocale(LC_ALL,"Portuguese");
+
 		printf("Nome do(a) %dº cadastrado(a): ", i+1);
         fgets(moradores[i].nome, sizeof(moradores[i].nome), stdin);
         moradores[i].nome[strcspn(moradores[i].nome, "\n")] = '\0'; // Remover a nova linha
@@ -119,6 +119,7 @@ int main(void){
 		printf("\nBairro:", moradores[i].bairro);
 		printf("\nComplemento: ", moradores[i].complemento);
 		printf("\nCep: ", moradores[i].cep);
+		printf("\nCidade: ", moradores[i].cidade);
 		printf("\nUF: ", moradores[i].uf);
 		printf("\nTelefone 1: ", moradores[i].telefone1);
 		printf("\nTelefone 2: ", moradores[i].telefone2);
