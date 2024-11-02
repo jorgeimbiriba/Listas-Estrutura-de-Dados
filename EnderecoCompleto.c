@@ -9,7 +9,7 @@ struct cadastro{
 	char numero[5];
 	char bairro[20];
 	char complemento[60];
-	char cep[9];	
+	char cep[10];	
 	char cidade [20];
 	char uf[1];
 	char telefone1 [12];
@@ -44,7 +44,6 @@ int main(void){
 	getchar();
 	
 	 
-    
 	for(i=0;i<n;i++){
 
 		printf("Nome do(a) %dº cadastrado(a): ", i+1);
@@ -70,30 +69,25 @@ int main(void){
 		fgets(moradores[i].complemento, sizeof(moradores[i].complemento),stdin);
 		moradores[i].complemento[strcspn(moradores[i].complemento,"\n")] = '\0';
 		
-		int tentativas = 0;
-        do {
-            printf("CEP (formato 12345-678): ");
-            fgets(moradores[i].cep, sizeof(moradores[i].cep), stdin);
-            moradores[i].cep[strcspn(moradores[i].cep, "\n")] = '\0';
-            tentativas++;
-        } while (!valida_cep(moradores[i].cep) && tentativas < 3); // Limita o número de tentativas
+	
+        printf("CEP (formato 12345-678): ");
+        fgets(moradores[i].cep, sizeof(moradores[i].cep), stdin);
+        moradores[i].cep[strcspn(moradores[i].cep, "\n")] = '\0';
+           
+           
+        /*} while (!valida_cep(moradores[i].cep) && tentativas < 3); // Limita o número de tentativas
 
         if (tentativas >= 3) {
             printf("Número máximo de tentativas excedido para o CEP.\n");
             // Decida o que fazer: continuar para o próximo cadastro, interromper o programa, etc.
-        }
-    }
-
-	for(i=0;i<n;i++){
-		printf("\nCidade: ");
+        }*/
+        printf("\nCidade: ");
 		fgets(moradores[i].cidade, sizeof(moradores[i].cidade),stdin);
 		moradores[i].cidade[strcspn(moradores[i].cidade, "\n")] = '\0';
-		
 		
 		printf("\nUF: ");
 		fgets(moradores[i].uf, sizeof(moradores[i].uf),stdin);
 		moradores[i].uf[strcspn(moradores[i].uf, "\n")] = '\0';
-		
 		
 		printf("\nTelefone 1: ");
 		fgets(moradores[i].telefone1, sizeof(moradores[i].telefone1),stdin);
@@ -107,23 +101,24 @@ int main(void){
 		printf("\nTelefone 3: ");
 		fgets(moradores[i].telefone3, sizeof(moradores[i].telefone3),stdin);
 		moradores[i].telefone3[strcspn(moradores[i].telefone3, "\n")] = '\0';
-	}
-    
+    }
+
+	
     
     //Exibição dos dados
     for(i=0;i<n;i++){
     	printf("Cadastro %d",i+1);
     	printf("\nNome: %s", moradores[i].nome);
-		printf("\nEndereço: ",moradores[i].endereco);
-		printf("\nNúmero: ",moradores[i].numero);
-		printf("\nBairro:", moradores[i].bairro);
-		printf("\nComplemento: ", moradores[i].complemento);
-		printf("\nCep: ", moradores[i].cep);
-		printf("\nCidade: ", moradores[i].cidade);
-		printf("\nUF: ", moradores[i].uf);
-		printf("\nTelefone 1: ", moradores[i].telefone1);
-		printf("\nTelefone 2: ", moradores[i].telefone2);
-		printf("\nTelefone 3: ", moradores[i].telefone3);
+		printf("\nEndereço: %s",moradores[i].endereco);
+		printf("\nNúmero: %s",moradores[i].numero);
+		printf("\nBairro: %s", moradores[i].bairro);
+		printf("\nComplemento: %s", moradores[i].complemento);
+		printf("\nCep: %s", moradores[i].cep);
+		printf("\nCidade: %s", moradores[i].cidade);
+		printf("\nUF: %s", moradores[i].uf);
+		printf("\nTelefone 1: %s", moradores[i].telefone1);
+		printf("\nTelefone 2: %s", moradores[i].telefone2);
+		printf("\nTelefone 3: %s", moradores[i].telefone3);
 		printf("\n*************************************");
 		printf("\n");
 	}
