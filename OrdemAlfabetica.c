@@ -2,36 +2,54 @@
 #include <string.h>
 #include <locale.h>
 
-ordemAlfabetica(){
-	char ordemAlf [27] = {'A','B','C','D','E','F','G','H','I','J','H','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
-}
-
-int main(void){
-setlocale(LC_ALL,"Portuguese");	
-struct cadastro{
+struct Pessoa{
 	char nome [100];
 	char endereco[50];
 	char telefone [11];
-}pessoas;
+};
+
+void ordenarPorNome(struct Pessoa pessoas[], int n) {
+	int i,j; 
+    struct Pessoa aux;
+    for (i = 0; i < n - 1; i++) {
+        for (j = i + 1; j < n; j++) {
+            if (strcmp(pessoas[i].nome, pessoas[j].nome) > 0) {
+                aux = pessoas[i];
+                pessoas[i] = pessoas[j];
+                pessoas[j] = aux;
+            }
+        }
+    }
+}
+
+int main(void){
+    setlocale(LC_ALL,"Portuguese");	
+    struct Pessoa pessoas[5];
 	
-	int i,j;
-	for(i=0;i<5;i++){
-		printf("Insira o nome da %dÂª pessoa: ",i+1);
-	    fflush(stdin);	
-	    fgets(pessoas.nome,100,stdin);
+	int i;
+	for(i=0;i< 5 ;i++){
+		printf("Insira o nome da %dº pessoa: ",i+1);	
+	    fgets(pessoas[i].nome,100,stdin);
+	    pessoas[i].nome[strcspn(pessoas[i].nome, "\n")] = '\0'; 
 	    
-	    printf("\nEndereÃ§o: ");
-	    fflush(stdin);
-	    fgets(pessoas.endereco,50,stdin);
+	    printf("\nEndereço: ");
+	    fgets(pessoas[i].endereco,50,stdin);
+		pessoas[i].endereco[strcspn(pessoas[i].endereco, "\n")] = '\0';
 	    
 	    printf("\nTelefone: ");
-	    fflush(stdin);
-	    fgets(pessoas.telefone,11,stdin);
+	    fgets(pessoas[i].telefone,11,stdin);
+		pessoas[i].telefone[strcspn(pessoas[i].telefone, "\n")] = '\0';
 	}
 	
+	ordenarPorNome(pessoas,5);
 	
 	for(i=0;i<5;i++){
-		ordemAlfabetica();
+		printf("\n********************************");
+		printf("\nPessoa %d: ",i+1);
+		printf("\nNome: %s", pessoas[i].nome);
+		printf("\nEndereço: %s", pessoas[i].endereco);
+		printf("\nTelefone: %s", pessoas[i].telefone);	
+		printf("\n********************************");	
 	}
 	
 	return 0;
